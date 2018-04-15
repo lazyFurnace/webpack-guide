@@ -1,6 +1,7 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     //entry为入口,webpack从这里开始编译
@@ -11,7 +12,8 @@ module.exports = {
     //output为输出 path代表路径 filename代表文件名称
     output: {
         path: path.join(__dirname, './bundle'),
-        filename: 'bundle.js'
+        filename: 'bundle.[hash:8].js',
+        chunkFilename: '[name].[chunkhash:8].js'
     },
     //module是配置所有模块要经过什么处理
     module: {
@@ -36,9 +38,26 @@ module.exports = {
             template: path.join(__dirname , "./src/index.html")  //要打包文件的路径
         }),
         new ExtractTextPlugin({
-            filename: 'index.css'
+            filename: 'index.[hash:8].css'
         }),
+        new CleanWebpackPlugin(['bundle'])
     ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'common',
+                    chunks: 'all'
+                }
+            }
+        }
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'bundle'),  //启动路径
+        host:'localhost',  //域名
+        port: 8018,  //端口号
+    },
     mode: 'development',
     devtool: ''
 };
