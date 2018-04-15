@@ -1,4 +1,5 @@
 const path = require('path');
+
 module.exports = {
     //entry为入口,webpack从这里开始编译
     entry: [
@@ -9,5 +10,18 @@ module.exports = {
     output: {
         path: path.join(__dirname, './bundle'),
         filename: 'bundle.js'
-    }
+    },
+    //module是配置所有模块要经过什么处理
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                use: ['babel-loader'],
+                include: path.join(__dirname , 'src'),
+                exclude: /node_modules/
+            }
+        ]
+    },
+    mode: 'development',
+    devtool: ''
 };
