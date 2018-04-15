@@ -1,4 +1,5 @@
 const path = require('path');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     //entry为入口,webpack从这里开始编译
@@ -25,6 +26,12 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new htmlWebpackPlugin({
+            filename: "index.html",  //打包后的文件名
+            template: path.join(__dirname , "./src/index.html")  //要打包文件的路径
+        })
+    ],
     mode: 'development',
     devtool: ''
 };
