@@ -19,6 +19,9 @@ module.exports = {
                 use: ['babel-loader'],
                 include: path.join(__dirname , 'src'),
                 exclude: /node_modules/
+            },{
+                test: /\.less$/,
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
             }
         ]
     },
