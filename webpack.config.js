@@ -1,5 +1,6 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     //entry为入口,webpack从这里开始编译
@@ -22,7 +23,10 @@ module.exports = {
                 exclude: /node_modules/
             },{
                 test: /\.less$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: ['css-loader', 'postcss-loader', 'less-loader']
+                })
             }
         ]
     },
@@ -30,7 +34,10 @@ module.exports = {
         new htmlWebpackPlugin({
             filename: "index.html",  //打包后的文件名
             template: path.join(__dirname , "./src/index.html")  //要打包文件的路径
-        })
+        }),
+        new ExtractTextPlugin({
+            filename: 'index.css'
+        }),
     ],
     mode: 'development',
     devtool: ''
