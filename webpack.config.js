@@ -27,7 +27,7 @@ module.exports = {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: ['css-loader', 'postcss-loader', 'less-loader']
+                    use: ['css-loader?modules&localIdentName=[local]-[hash:base64:5]', 'postcss-loader', 'less-loader']
                 })
             },{
                 test: /\.(png|jpg|gif)$/,
