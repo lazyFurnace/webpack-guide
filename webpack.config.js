@@ -6,13 +6,13 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     //entry为入口,webpack从这里开始编译
     entry:{
-        redux: path.join(__dirname, './src/reduxPage/index.js'),
-        router: path.join(__dirname, './src/routerPage/index.js')
+        reduxPage: path.join(__dirname, './src/reduxPage/index.js'),
+        routerPage: path.join(__dirname, './src/routerPage/index.js')
     },
     //output为输出 path代表路径 filename代表文件名称
     output: {
         path: path.join(__dirname, './bundle'),
-        filename: '[name]Page/[name].bundle.[hash:8].js',
+        filename: '[name]/[name].bundle.[hash:8].js',
         chunkFilename: '[name].[chunkhash:8].js'
     },
     //module是配置所有模块要经过什么处理
@@ -43,18 +43,21 @@ module.exports = {
     plugins: [
         new htmlWebpackPlugin({
             filename: "index.html",  //打包后的文件名
-            template: path.join(__dirname , "./src/index.html")  //要打包文件的路径
+            template: path.join(__dirname , "./src/index.html"),  //要打包文件的路径
+            chunks: []
         }),
         new htmlWebpackPlugin({
-            filename: "./routerPage/index.html",  //打包后的文件名
-            template: path.join(__dirname , "./src/routerPage/index.html")  //要打包文件的路径
+            filename: "routerPage/index.html",  //打包后的文件名
+            template: path.join(__dirname , "src/routerPage/index.html"),  //要打包文件的路径
+            chunks: ['routerPage', 'common']
         }),
         new htmlWebpackPlugin({
-            filename: "./reduxPage/index.html",  //打包后的文件名
-            template: path.join(__dirname , "./src/reduxPage/index.html")  //要打包文件的路径
+            filename: "reduxPage/index.html",  //打包后的文件名
+            template: path.join(__dirname , "src/reduxPage/index.html"),  //要打包文件的路径
+            chunks: ['reduxPage', 'common']  //对应关系
         }),
         new ExtractTextPlugin({
-            filename: 'index.[hash:8].css'
+            filename: '[name]/[name].index.[hash:8].css'
         }),
         new CleanWebpackPlugin(['bundle'])
     ],
