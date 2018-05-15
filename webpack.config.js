@@ -6,8 +6,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     //entry为入口,webpack从这里开始编译
     entry:{
-        reduxPage: path.join(__dirname, './src/reduxPage/index.js'),
-        routerPage: path.join(__dirname, './src/routerPage/index.js')
+        reduxPage: [
+            "babel-polyfill", 
+            path.join(__dirname, './src/reduxPage/index.js')
+        ],
+        routerPage: [
+            "babel-polyfill",
+            path.join(__dirname, './src/routerPage/index.js')
+        ]
     },
     //output为输出 path代表路径 filename代表文件名称
     output: {
