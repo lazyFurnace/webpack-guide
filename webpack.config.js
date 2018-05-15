@@ -5,14 +5,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     //entry为入口,webpack从这里开始编译
-    entry: [
-        "babel-polyfill",
-        path.join(__dirname, './src/index.js')
-    ],
+    entry:{
+        redux: path.join(__dirname, './src/reduxPage/index.js'),
+        router: path.join(__dirname, './src/routerPage/index.js')
+    },
     //output为输出 path代表路径 filename代表文件名称
     output: {
         path: path.join(__dirname, './bundle'),
-        filename: 'bundle.[hash:8].js',
+        filename: '[name]Page/[name].bundle.[hash:8].js',
         chunkFilename: '[name].[chunkhash:8].js'
     },
     //module是配置所有模块要经过什么处理
@@ -44,6 +44,14 @@ module.exports = {
         new htmlWebpackPlugin({
             filename: "index.html",  //打包后的文件名
             template: path.join(__dirname , "./src/index.html")  //要打包文件的路径
+        }),
+        new htmlWebpackPlugin({
+            filename: "./routerPage/index.html",  //打包后的文件名
+            template: path.join(__dirname , "./src/routerPage/index.html")  //要打包文件的路径
+        }),
+        new htmlWebpackPlugin({
+            filename: "./reduxPage/index.html",  //打包后的文件名
+            template: path.join(__dirname , "./src/reduxPage/index.html")  //要打包文件的路径
         }),
         new ExtractTextPlugin({
             filename: 'index.[hash:8].css'
