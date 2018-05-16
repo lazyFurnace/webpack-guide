@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     //entry为入口,webpack从这里开始编译
+    //entry写为对象形式是多入口打包
     entry:{
         reduxPage: [
             "babel-polyfill", 
@@ -16,12 +17,14 @@ module.exports = {
         ]
     },
     //output为输出 path代表路径 filename代表文件名称
+    //filename前面加[name]/可打包出分开的文件夹
     output: {
         path: path.join(__dirname, './bundle'),
         filename: '[name]/[name].bundle.[hash:8].js',
         chunkFilename: '[name].[chunkhash:8].js'
     },
     //module是配置所有模块要经过什么处理
+    //css-loader可以使用css modules
     module: {
         rules: [
             {
@@ -47,23 +50,27 @@ module.exports = {
         ]
     },
     plugins: [
+        //想出多个页面就 new 多个htmlWebpackPlugin 及对应的文件位置 配置chunks确定引入什么模块
         new htmlWebpackPlugin({
-            filename: "index.html",  //打包后的文件名
-            template: path.join(__dirname , "./src/index.html"),  //要打包文件的路径
-            chunks: []
+            filename: "index.html", //生成html的名字
+            template: path.join(__dirname , "./src/index.html"),  //模板页面
+            chunks: []  //打包什么东西
         }),
         new htmlWebpackPlugin({
-            filename: "routerPage/index.html",  //打包后的文件名
-            template: path.join(__dirname , "src/routerPage/index.html"),  //要打包文件的路径
-            chunks: ['routerPage', 'common']
+            filename: "routerPage/index.html",
+            template: path.join(__dirname , "src/routerPage/index.html"), 
+            chunks: ['routerPage', 'common/vendor']
         }),
         new htmlWebpackPlugin({
-            filename: "reduxPage/index.html",  //打包后的文件名
-            template: path.join(__dirname , "src/reduxPage/index.html"),  //要打包文件的路径
-            chunks: ['reduxPage', 'common']  //对应关系
+            filename: "reduxPage/index.html",
+            template: path.join(__dirname , "src/reduxPage/index.html"), 
+            chunks: ['reduxPage', 'common/vendor']
         }),
         new ExtractTextPlugin({
             filename: '[name]/[name].index.[hash:8].css'
+        }),
+        new ExtractTextPlugin({
+            filename: 'common/index.[hash:8].css'
         }),
         new CleanWebpackPlugin(['bundle'])
     ],
@@ -72,7 +79,7 @@ module.exports = {
             cacheGroups: {
                 vendor: {
                     test: /[\\/]node_modules[\\/]/,
-                    name: 'common',
+                    name: 'common/vendor',
                     chunks: 'all'
                 }
             }
