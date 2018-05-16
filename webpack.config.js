@@ -59,18 +59,15 @@ module.exports = {
         new htmlWebpackPlugin({
             filename: "routerPage/index.html",
             template: path.join(__dirname , "src/routerPage/index.html"), 
-            chunks: ['routerPage', 'common/vendor']
+            chunks: ['routerPage', 'vendor', 'common']
         }),
         new htmlWebpackPlugin({
             filename: "reduxPage/index.html",
             template: path.join(__dirname , "src/reduxPage/index.html"), 
-            chunks: ['reduxPage', 'common/vendor']
+            chunks: ['reduxPage', 'vendor', 'common']
         }),
         new ExtractTextPlugin({
-            filename: '[name]/[name].index.[hash:8].css'
-        }),
-        new ExtractTextPlugin({
-            filename: 'common/index.[hash:8].css'
+            filename: '[name]/index.[hash:8].css'
         }),
         new CleanWebpackPlugin(['bundle'])
     ],
@@ -79,8 +76,14 @@ module.exports = {
             cacheGroups: {
                 vendor: {
                     test: /[\\/]node_modules[\\/]/,
-                    name: 'common/vendor',
+                    name: 'vendor',
                     chunks: 'all'
+                },
+                utils: {
+                    test: /[\\/]common[\\/]/,
+                    name: 'common', 
+                    chunks: 'initial',
+                    minSize: 0
                 }
             }
         }
