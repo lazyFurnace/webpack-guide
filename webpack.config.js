@@ -25,7 +25,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, './bundle'),
         filename: '[name]/[name].bundle.[hash:8].js',
-        chunkFilename: '[name].[chunkhash:8].js'
+        chunkFilename: 'common/[name].[chunkhash:8].js'
     },
     //module是配置所有模块要经过什么处理
     //css-loader可以使用css modules
@@ -39,13 +39,6 @@ module.exports = {
             },{
                 test: /\.less$/,
                 exclude: /src\/common/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: ['css-loader?modules&localIdentName=[local]-[hash:base64:5]', 'postcss-loader', 'less-loader']
-                })
-            },{
-                test: /\.less$/,
-                include: /src\/common/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: ['css-loader?modules&localIdentName=[local]-[hash:base64:5]', 'postcss-loader', 'less-loader']
@@ -71,34 +64,36 @@ module.exports = {
         new htmlWebpackPlugin({
             filename: "routerPage/index.html",
             template: path.join(__dirname , "src/routerPage/index.html"), 
-            chunks: ['routerPage', 'js/vendor', 'js/common']
+            chunks: ['routerPage', 'vendor', 'common']
         }),
         new htmlWebpackPlugin({
             filename: "reduxPage/index.html",
             template: path.join(__dirname , "src/reduxPage/index.html"), 
-            chunks: ['reduxPage', 'js/vendor', 'js/common']
+            chunks: ['reduxPage', 'vendor', 'common']
         }),
         new ExtractTextPlugin({
             filename: '[name]/[name].[hash:8].css'
-        }),
-        new ExtractTextPlugin({
-            filename: 'css/common.[hash:8].css'
         }),
         new CleanWebpackPlugin(['bundle'])
     ],
     optimization: {
         splitChunks: {
+            chunks: 'initial',
             cacheGroups: {
                 vendor: {
                     test: /[\\/]node_modules[\\/]/,
-                    name: 'js/vendor',
-                    chunks: 'all'
+                    name: 'vendor',
+                    chunks: 'all',
+                    priority: 10,
+                    enforce: true
                 },
                 utils: {
-                    test: /[\\/]common[\\/]js[\\/]/,
-                    name: 'js/common', 
-                    chunks: 'initial',
-                    minSize: 0
+                    test: /[\\/]common[\\/]/,
+                    name: 'common', 
+                    chunks: 'all',
+                    minSize: 0,
+                    priority: 10,
+                    enforce: true
                 }
             }
         }
