@@ -3,6 +3,10 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+
+//CSS打包出来的东西重复了！！
+
+
 module.exports = {
     //entry为入口,webpack从这里开始编译
     //entry写为对象形式是多入口打包
