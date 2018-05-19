@@ -22,6 +22,7 @@ module.exports = {
     },
     //output为输出 path代表路径 filename代表文件名称
     //filename前面加[name]/可打包出分开的文件夹
+    //chunkFilename公共js文件打包放的位置
     output: {
         path: path.join(__dirname, './bundle'),
         filename: '[name]/[name].bundle.[hash:8].js',
@@ -38,7 +39,6 @@ module.exports = {
                 exclude: /node_modules/
             },{
                 test: /\.less$/,
-                exclude: /src\/common/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: ['css-loader?modules&localIdentName=[local]-[hash:base64:5]', 'postcss-loader', 'less-loader']
@@ -76,6 +76,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(['bundle'])
     ],
+    //配置公共部分第一个是公共库  第二个是自己的公共代码
     optimization: {
         splitChunks: {
             chunks: 'initial',
