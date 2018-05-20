@@ -1,2 +1,3 @@
-# webpack-my
-webpack 4 基础功能包
+### webpack-guide
+webpack 4 功能使用指南
+
