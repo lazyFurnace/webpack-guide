@@ -1,5 +1,5 @@
 {
-  "name": "webpack-my",
+  "name": "webpack-guide",
   "version": "1.0.0",
   "description": "webpack-4 实践",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liqiUser/webpack-my.git"
+    "url": "git+https://github.com/liqiUser/webpack-guide.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/liqiUser/webpack-my/issues"
+    "url": "https://github.com/liqiUser/webpack-guide/issues"
   },
-  "homepage": "https://github.com/liqiUser/webpack-my#readme",
+  "homepage": "https://github.com/liqiUser/webpack-guide#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
