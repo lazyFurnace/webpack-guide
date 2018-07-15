@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx webpack --config webpack.config.js",
-    "start": "npx webpack-dev-server --config webpack.config.js --color --progress --hot"
+    "start": "npx webpack-dev-server --config webpack.config.js --color --progress"
   },
   "repository": {
     "type": "git",
