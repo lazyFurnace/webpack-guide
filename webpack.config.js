@@ -6,12 +6,15 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     //entry为入口,webpack从这里开始编译
     //entry写为对象形式是多入口打包
+    //webpack/hot/only-dev-server 开启热加载
     entry:{
         reduxPage: [
+            'webpack/hot/only-dev-server',
             "babel-polyfill", 
             path.join(__dirname, './src/reduxPage/index.js')
         ],
         routerPage: [
+            'webpack/hot/only-dev-server',
             "babel-polyfill",
             path.join(__dirname, './src/routerPage/index.js')
         ]
@@ -99,6 +102,7 @@ module.exports = {
         contentBase: path.join(__dirname, 'bundle'),  //启动路径
         host:'localhost',  //域名
         port: 8018,  //端口号
+        hot: true   //热加载
     },
     mode: 'development',
     devtool: ''

@@ -46,3 +46,16 @@
 
 有什么问题或者想说的欢迎来 [这里](https://github.com/liqiUser/webpack-guide/issues) <br>
 如果你都看到这里了...  给个Star呗~
+
+----2018.07.15----
+
+热加载设置 <br>
+`webpack.config.js` 中的 `devServer` 加入 `hot: true` <br>
+`entry` 入口添加 `webpack/hot/only-dev-server` 开启热加载 <br>
+需要热加载的页面加入 
+```
+if (module.hot) {
+    module.hot.accept();
+}
+```
+开启热加载
