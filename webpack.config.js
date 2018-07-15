@@ -14,6 +14,11 @@ module.exports = {
         routerPage: [
             "babel-polyfill",
             path.join(__dirname, './src/routerPage/index.js')
+        ],
+        index: [
+            'webpack/hot/only-dev-server',
+            "babel-polyfill",
+            path.join(__dirname, './src/index.js')
         ]
     },
     //output为输出 path代表路径 filename代表文件名称
@@ -55,7 +60,7 @@ module.exports = {
         new htmlWebpackPlugin({
             filename: "index.html", //生成html的名字
             template: path.join(__dirname , "./src/index.html"),  //模板页面
-            chunks: []  //打包什么东西
+            chunks: ['index', 'vendor', 'common']  //打包什么东西
         }),
         new htmlWebpackPlugin({
             filename: "routerPage/index.html",
@@ -99,6 +104,7 @@ module.exports = {
         contentBase: path.join(__dirname, 'bundle'),  //启动路径
         host:'localhost',  //域名
         port: 8018,  //端口号
+        hot: true
     },
     mode: 'development',
     devtool: ''
