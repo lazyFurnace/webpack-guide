@@ -35,6 +35,7 @@
         |──reduxPage
         |──routerPage
         |──index.html
+        |──index.js
     |──.babelrc               #babel配置文件
     |──.gitignore             #git忽略配置文件
     |──package-lock.json
