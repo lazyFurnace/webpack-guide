@@ -107,5 +107,5 @@ module.exports = {
         hot: true
     },
     mode: 'development',
-    devtool: ''
+    devtool: 'source-map'
 };
