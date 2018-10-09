@@ -44,7 +44,7 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
-    "react-rotation-map": "0.0.1",
+    "react-rotation-map": "^0.1.0",
     "react-router": "^4.2.0",
     "redux": "^4.0.0"
   }
