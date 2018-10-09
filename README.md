@@ -13,10 +13,10 @@
    公共代码提取 <br>
    React、Less配置等...
  ### 如何使用
-    下载项目后 `npm install` 安装完整项目 <br>
-    `npm build` 打包生成文件 <br>
-    `npm start` 开启 `webpack-dev-server` <br> 
-    打开 `http://localhost:8018/` 访问
+   下载项目后 `npm install` 安装完整项目 <br>
+   `npm build` 打包生成文件 <br>
+   `npm start` 开启 `webpack-dev-server` <br> 
+   打开 `http://localhost:8018/` 访问
  ### 目录结构
  ```
    webpack-guide
