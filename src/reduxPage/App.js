@@ -3,7 +3,7 @@ import React from 'react';
 import style from './App.less';
 
 export default class App extends React.Component {
-    render () {
+    render() {
         return (
             <div className="react-start">
                 Hello React rudex

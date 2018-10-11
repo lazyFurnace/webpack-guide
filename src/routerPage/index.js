@@ -6,6 +6,6 @@ import '../common/js/common.js';
 import App from './App.js';
 
 ReactDom.render(
-    <App/>,
+    <App />,
     document.getElementById("root")
 );

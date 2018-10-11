@@ -4,7 +4,7 @@ import RotationMap from 'react-rotation-map';
 import style from './App.less';
 
 export default class App extends React.Component {
-    render () {
+    render() {
         return (
             <div className={style.father}>
                 <RotationMap>
