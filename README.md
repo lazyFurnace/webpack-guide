@@ -1,22 +1,22 @@
 # webpack 4 使用指南
 
-这是一个用 `webpack 4.5` 版本制作的 webpack 基础功能包。 <br>
-  包含了项目中一些常用 Webpack 功能和插件，并配有注释。 <br>
-  如果你需要了解和学习下 Webpack 的配置，不妨打开它看看，一个完整的配置包，应该会对你有所帮助。 <br>
+这是一个用 `webpack 4.5` 版本制作的 webpack 基础功能包。
+包含了项目中一些常用 Webpack 功能和插件，并配有注释。
+如果你需要了解和学习下 Webpack 的配置，不妨打开它看看，一个完整的配置包，应该会对你有所帮助。
 
 ### 推荐配合我在掘金的文章一起看 [文章链接](https://juejin.im/post/5ad1ef5d518825556534f137)
 
 ### 功能简介
 
 `babel-preset-env`转义 ES6+ <br>
- `babel-polyfill`ES6+辅助转化器 <br>
- `postcss` CSS 添加前缀 <br>
- `css modules` 模块化 <br>
-  HTML、CSS 文件生成插件 <br>
-  多页面打包 <br>
-  公共库提取 <br>
-  公共代码提取 <br>
-  React、Less 配置等...
+`babel-polyfill`ES6+辅助转化器 <br>
+`postcss` CSS 添加前缀 <br>
+`css modules` 模块化 <br>
+HTML、CSS 文件生成插件 <br>
+多页面打包 <br>
+公共库提取 <br>
+公共代码提取 <br>
+React、Less 配置等...
 
 ### 如何使用
 
